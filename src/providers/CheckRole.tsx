@@ -1,8 +1,7 @@
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { FC } from 'react';
 import { useAuth } from '@/shared/hooks/useAuth';
 import { TypeComponentAuthFields } from '@/shared/interfaces/auth.interface';
-import { useRouter } from 'next/navigation';
 
 const CheckRole: FC<TypeComponentAuthFields> = ({
   children,
@@ -26,8 +25,8 @@ const CheckRole: FC<TypeComponentAuthFields> = ({
 
   if (isUser && isOnlyUser) return <Children />;
   else {
-    pathName !== '/auth' && router.replace('/AuthPage');
-    return null;
+    pathName !== '/auth_page' && router.replace('/auth_page');
+    return <Children />;
   }
 };
 

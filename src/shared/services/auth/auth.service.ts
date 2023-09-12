@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 
 import { IAuthResponse } from '@/store/user/user.interface';
 
-import { getContentType } from '@/shared/helpers/api.helper';
+import { errorCatch, getContentType } from '@/shared/helpers/api.helper';
 import {
   removeTokensStorage,
   saveToStorage,
@@ -11,19 +11,19 @@ import {
 import { API_URL } from '@/shared/config/api.config';
 
 export const AuthService = {
-  async register(email: string, password: string) {
-    const response = await axios.post<IAuthResponse>(
-      `${API_URL}/auth/register`,
-      {
-        email,
-        password,
+  async verify(dataCheckString: string, hash: string) {
+    try {
+      const { data } = await axios.post(
+        `${API_URL}/auth/verify?checkString=${dataCheckString}&hash=${hash}`
+      );
+      if (data) {
+        saveToStorage(data);
+        return data;
       }
-    );
-
-    if (response.data.accessToken) {
-      saveToStorage(response.data);
+    } catch (e) {
+      errorCatch(e);
+      console.log(e);
     }
-    return response;
   },
   async login(email: string, password: string) {
     const response = await axios.post<IAuthResponse>(`${API_URL}/auth/login`, {
