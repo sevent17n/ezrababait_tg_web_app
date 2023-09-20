@@ -1,8 +1,8 @@
-import { AuthService } from '@/shared/services/auth/auth.service';
+import { AuthService } from '@/shared/api/services/auth/auth.service';
 import { IUserState } from '@/store/user/user.interface';
 
 export const tgAuth = async (user: IUserState | null, pathname: string) => {
-  if (pathname === 'auth_page') return null;
+  if (pathname === '/auth_page') return null;
 
   if (user) return null;
   const queryString: string = window.location.search;

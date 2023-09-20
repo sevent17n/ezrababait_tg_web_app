@@ -3,11 +3,11 @@ import Cookies from 'js-cookie';
 
 import { IAuthResponse } from '@/store/user/user.interface';
 
-import { errorCatch, getContentType } from '@/shared/helpers/api.helper';
+import { errorCatch, getContentType } from '@/shared/api/api.helper';
 import {
   removeTokensStorage,
   saveTokensStorage,
-} from '@/shared/services/auth/auth.helpers';
+} from '@/shared/api/services/auth/auth.helpers';
 import { API_URL } from '@/shared/config/api.config';
 import { TelegramUser } from '@v9v/ts-react-telegram-login';
 

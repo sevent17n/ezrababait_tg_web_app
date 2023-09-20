@@ -1,10 +1,10 @@
 import './globals.css';
-import type { Metadata, NextComponentType } from 'next';
+import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import MainProvider from '@/providers/MainProvider';
+import MainProvider from '@/app/providers/MainProvider';
 import { ReactNode } from 'react';
-import NavBar from '@/widgets/navbar/NavBar';
 import Layout from '@/widgets/layout/layout';
+import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 

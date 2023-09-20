@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { IAuthResponse } from '@/store/user/user.interface';
-import { errorCatch } from '@/shared/helpers/api.helper';
-import { AuthService } from '@/shared/services/auth/auth.service';
+import { errorCatch } from '@/shared/api/api.helper';
+import { AuthService } from '@/shared/api/services/auth/auth.service';
 import { TelegramUser } from '@v9v/ts-react-telegram-login';
 
 export const login = createAsyncThunk<IAuthResponse, TelegramUser>(

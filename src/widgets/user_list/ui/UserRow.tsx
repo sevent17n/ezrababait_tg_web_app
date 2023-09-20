@@ -1,13 +1,13 @@
 import { FC, useCallback, useState } from 'react';
 import { IPost } from '@/shared/interfaces/post.interface';
 import UserCardHidden from '@/entities/user_card/UserCardHidden';
-import { v4 } from 'uuid';
 import styled from '@emotion/styled';
 import ExpandedUserCard from '@/entities/user_card/ExpandedUserCard';
 
 const StyledUserRow = styled.div`
   display: flex;
-  max-width: 450px;
+  max-width: 900px;
+  gap: 20px;
   margin: 0;
 `;
 const UserRow: FC<{ posts: Array<IPost> }> = ({ posts }) => {
@@ -26,13 +26,14 @@ const UserRow: FC<{ posts: Array<IPost> }> = ({ posts }) => {
     [info]
   );
   return (
-    <div>
+    <div style={{ marginTop: 30 }}>
       <StyledUserRow>
         {posts.map((post) => (
           <UserCardHidden
             key={Math.random()}
             post={post}
             onCardClick={onCardClick}
+            active={info}
           />
         ))}
       </StyledUserRow>

@@ -1,0 +1,36 @@
+
+.list {
+	@apply bg-gray-800 text-white absolute border border-gray-700   w-full  z-10;
+	top: calc(100% + 15px);
+	max-height: 450px;
+	overflow-y: scroll;
+
+	> a {
+		@apply flex items-center py-3 px-4 relative;
+
+		&::after {
+			@apply absolute -right-0.5 h-0 w-0.5 bg-transparent;
+			content: "";
+			top: 28%;
+			transition: height 0.3s ease-in-out, background-color 0.3s ease-in-out;
+		}
+
+		&:hover::after {
+			@apply bg-purple-900 h-2/5;
+		}
+
+		img {
+
+			height: 80px;
+			width: 60px;
+		}
+
+		> span {
+			@apply ml-3 text-white truncate;
+
+			&:last-child {
+				width: 70%;
+			}
+		}
+	}
+}

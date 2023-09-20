@@ -5,7 +5,6 @@ const SuperAdminLayout: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <div>
       <SuperAdminHeader />
-      SuperAdminLayout
       {children}
     </div>
   );

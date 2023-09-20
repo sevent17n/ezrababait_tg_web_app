@@ -1,8 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { UserService } from '@/shared/services/user.service';
-import UserRow from '@/features/user_list/ui/UserRow';
-import { IPost } from '@/shared/interfaces/post.interface';
-import { v4 } from 'uuid';
+import { UserService } from '@/shared/api/services/user.service';
+import UserRow from '@/widgets/user_list/ui/UserRow';
 import { useMemo } from 'react';
 
 const UserList = () => {
@@ -29,7 +27,7 @@ const UserList = () => {
   }, [posts]);
 
   return (
-    <div className={'flex flex-col justify-center items-center w-full'}>
+    <div className={'flex-col justify-center items-center w-full'}>
       {postsMatrix.map((postsSet) => (
         <UserRow posts={postsSet} key={Math.random()} />
       ))}

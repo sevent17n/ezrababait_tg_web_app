@@ -1,5 +1,11 @@
+import ManageGroups from '@/pages/ManageGroups/ManageGroups';
+
 const Page = () => {
-  return <div></div>;
+  return (
+    <>
+      <ManageGroups />
+    </>
+  );
 };
 
 export default Page;

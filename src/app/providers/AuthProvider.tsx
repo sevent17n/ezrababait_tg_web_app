@@ -4,13 +4,13 @@ import Cookies from 'js-cookie';
 import { usePathname, useRouter } from 'next/navigation';
 import { FC, useEffect } from 'react';
 import { TypeComponentAuthFields } from '@/shared/interfaces/auth.interface';
-import { useAuth } from '@/shared/hooks/useAuth';
-import { useActions } from '@/shared/hooks/useActions';
-import { tgAuth } from '@/shared/hooks/useTgAuth';
+import { useAuth } from '@/shared/lib/hooks/useAuth';
+import { useActions } from '@/shared/lib/hooks/useActions';
+import { tgAuth } from '@/shared/lib/hooks/useTgAuth';
 import { useQuery } from '@tanstack/react-query';
 import PendingPage from '@/app/pending_page/page';
 import AuthPage from '@/app/auth_page/page';
-
+import '../globals.css';
 const AuthProvider: FC<TypeComponentAuthFields> = ({
   children,
   Component: { isOnlyUser, isOnlyAdmin, isOnlySuperAdmin },
@@ -22,7 +22,7 @@ const AuthProvider: FC<TypeComponentAuthFields> = ({
 
   const { data } = useQuery(
     ['tgAuth'],
-    async () => !isLoading && tgAuth(user, pathname)
+    async () => !isLoading && pathname && tgAuth(user, pathname)
   );
   const router = useRouter();
   if (data) router.push('/');
@@ -57,6 +57,7 @@ const AuthProvider: FC<TypeComponentAuthFields> = ({
       return null;
     }
     if (isHouseKeeper) return <>{children}</>;
+
     if (isOnlyUser) {
       pathname !== '/404' && router.replace('/404');
       return null;

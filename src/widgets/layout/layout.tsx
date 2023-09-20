@@ -1,7 +1,7 @@
 'use client';
 
 import { FC, ReactNode } from 'react';
-import { useAuth } from '@/shared/hooks/useAuth';
+import { useAuth } from '@/shared/lib/hooks/useAuth';
 import CommonUserLayout from '@/widgets/layout/common_user/CommonUserLayout';
 import SuperAdminLayout from '@/widgets/layout/super_admin/SuperAdminLayout';
 import AdminLayout from '@/widgets/layout/admin/AdminLayout';
