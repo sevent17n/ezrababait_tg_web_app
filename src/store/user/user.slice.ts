@@ -5,8 +5,8 @@ import { IInitialState } from '@/store/user/user.interface';
 import { getStoreLocal } from '@/shared/helpers/local_storage.helper';
 
 const initialState: IInitialState = {
-  user: getStoreLocal('user'),
-  isLoading: false,
+  user: null,
+  isLoading: true,
 };
 
 export const userSlice = createSlice({
@@ -30,7 +30,11 @@ export const userSlice = createSlice({
         state.isLoading = false;
         state.user = null;
       })
+      .addCase(checkAuth.pending, (state, { payload }) => {
+        state.isLoading = true;
+      })
       .addCase(checkAuth.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
         state.user = payload.user;
       });
   },

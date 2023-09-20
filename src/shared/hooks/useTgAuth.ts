@@ -1,6 +1,10 @@
 import { AuthService } from '@/shared/services/auth/auth.service';
+import { IUserState } from '@/store/user/user.interface';
 
-export const tgAuth = async () => {
+export const tgAuth = async (user: IUserState | null, pathname: string) => {
+  if (pathname === 'auth_page') return null;
+
+  if (user) return null;
   const queryString: string = window.location.search;
 
   const queryParameters: string[] = queryString.slice(1).split('&');
@@ -22,7 +26,6 @@ export const tgAuth = async () => {
     ([key, value]) => `${key}=${value}`
   );
 
-  console.log(queryObject);
   dataCheckArray.sort();
   const dataCheckString = dataCheckArray.join('/');
 

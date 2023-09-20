@@ -6,9 +6,10 @@ import { IAuthResponse } from '@/store/user/user.interface';
 import { errorCatch, getContentType } from '@/shared/helpers/api.helper';
 import {
   removeTokensStorage,
-  saveToStorage,
+  saveTokensStorage,
 } from '@/shared/services/auth/auth.helpers';
 import { API_URL } from '@/shared/config/api.config';
+import { TelegramUser } from '@v9v/ts-react-telegram-login';
 
 export const AuthService = {
   async verify(dataCheckString: string, hash: string) {
@@ -17,7 +18,7 @@ export const AuthService = {
         `${API_URL}/auth/verify?checkString=${dataCheckString}&hash=${hash}`
       );
       if (data) {
-        saveToStorage(data);
+        saveTokensStorage(data);
         return data;
       }
     } catch (e) {
@@ -25,21 +26,22 @@ export const AuthService = {
       console.log(e);
     }
   },
-  async login(email: string, password: string) {
-    const response = await axios.post<IAuthResponse>(`${API_URL}/auth/login`, {
-      email,
-      password,
-    });
+  async login(data: TelegramUser) {
+    console.log(data);
+    const response = await axios.post<IAuthResponse>(
+      `${API_URL}/auth/telegram`,
+
+      data
+    );
 
     if (response.data.accessToken) {
-      saveToStorage(response.data);
+      saveTokensStorage(response.data);
     }
 
     return response;
   },
   logout() {
     removeTokensStorage();
-    localStorage.removeItem('user');
   },
   async getNewTokens() {
     const refreshToken = Cookies.get('refreshToken');
@@ -54,7 +56,7 @@ export const AuthService = {
     );
 
     if (response.data.accessToken) {
-      saveToStorage(response.data);
+      saveTokensStorage(response.data);
     }
 
     return response;

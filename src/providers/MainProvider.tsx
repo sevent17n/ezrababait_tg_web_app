@@ -4,17 +4,21 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { store } from '@/store/store';
 import { Provider } from 'react-redux';
 import AuthProvider from '@/providers/AuthProvider';
+import { useHierarchyAccessHelper } from '@/shared/helpers/hierarchy_access.helper';
+import { usePathname } from 'next/navigation';
 
 const MainProvider: FC<{
   children: ReactNode;
 }> = ({ children }) => {
   const client = new QueryClient();
+  const pathname = usePathname();
+  const accessLevel = useHierarchyAccessHelper(pathname);
   return (
-    <Provider store={store}>
-      <QueryClientProvider client={client}>
-        <AuthProvider Component={{ isOnlyUser: true }}>{children}</AuthProvider>
-      </QueryClientProvider>
-    </Provider>
+    <QueryClientProvider client={client}>
+      <Provider store={store}>
+        <AuthProvider Component={accessLevel}>{children}</AuthProvider>
+      </Provider>
+    </QueryClientProvider>
   );
 };
 

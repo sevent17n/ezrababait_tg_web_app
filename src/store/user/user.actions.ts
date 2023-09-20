@@ -1,14 +1,16 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { IAuthResponse, IEmailPassword } from '@/store/user/user.interface';
+import { IAuthResponse } from '@/store/user/user.interface';
 import { errorCatch } from '@/shared/helpers/api.helper';
 import { AuthService } from '@/shared/services/auth/auth.service';
+import { TelegramUser } from '@v9v/ts-react-telegram-login';
 
-export const login = createAsyncThunk<IAuthResponse, IEmailPassword>(
+export const login = createAsyncThunk<IAuthResponse, TelegramUser>(
   'auth/login',
-  async ({ emailOrLogin, password }, thunkAPI) => {
+  async (data, thunkAPI) => {
     try {
-      const response = await AuthService.login(emailOrLogin, password);
+      console.log(data);
+      const response = await AuthService.login(data);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e);

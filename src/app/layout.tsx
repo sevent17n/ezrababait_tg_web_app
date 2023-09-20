@@ -3,6 +3,8 @@ import type { Metadata, NextComponentType } from 'next';
 import { Inter } from 'next/font/google';
 import MainProvider from '@/providers/MainProvider';
 import { ReactNode } from 'react';
+import NavBar from '@/widgets/navbar/NavBar';
+import Layout from '@/widgets/layout/layout';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -14,9 +16,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <MainProvider>
-        <body className={inter.className}>{children}</body>
-      </MainProvider>
+      <body className={inter.className}>
+        <MainProvider>
+          <Layout>{children}</Layout>
+        </MainProvider>
+      </body>
     </html>
   );
 }

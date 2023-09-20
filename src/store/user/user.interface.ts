@@ -1,14 +1,12 @@
-export interface IUser {
-  _id: string;
-  email: string;
-  password: string;
-  createdAt: string;
-  isAdmin: boolean;
-}
-
 export interface IUserState {
-  email: string;
-  isAdmin: boolean;
+  chats: Array<{}>;
+  first_name: string;
+  last_name: string;
+  photo_url: string;
+  username: string;
+  posts: Array<{}>;
+  id: number;
+  isAdmin: 'admin' | 'housekeeper' | 'super_admin' | 'pending';
 }
 
 export interface ITokens {
@@ -19,12 +17,7 @@ export interface IInitialState {
   user: IUserState | null;
   isLoading: boolean;
 }
-export interface IEmailPassword {
-  emailOrLogin: string;
-  password: string;
-}
+
 export interface IAuthResponse extends ITokens {
-  user: IUser & {
-    isAdmin: boolean;
-  };
+  user: IUserState;
 }
