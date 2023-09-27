@@ -8,11 +8,8 @@ import { useAuth } from '@/shared/lib/hooks/useAuth';
 import { useActions } from '@/shared/lib/hooks/useActions';
 import { tgAuth } from '@/shared/lib/hooks/useTgAuth';
 import { useQuery } from '@tanstack/react-query';
-import PendingPage from '@/app/pending_page/page';
-import AuthPage from '@/app/auth_page/page';
 import '../globals.css';
-import { ChatService } from '@/shared/api/services/chat.service';
-import { IUserState } from '@/store/user/user.interface';
+
 const AuthProvider: FC<TypeComponentAuthFields> = ({
   children,
   Component: { isOnlyUser, isOnlyAdmin, isOnlySuperAdmin },
