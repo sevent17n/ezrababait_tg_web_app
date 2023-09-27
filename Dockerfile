@@ -2,21 +2,21 @@ FROM node:alpine AS base
 
 WORKDIR /app
 
-COPY ["package.json", "yarn.lock", "./"]
+COPY ["package.json", "./"]
 
 
 FROM base AS dev
 ENV NODE_ENV=development
-RUN RUN yarn install
+RUN npm install
 COPY . .
-CMD [ "yarn", "dev" ]
+
+CMD [ "npm", "run", "dev" ]
 
 
 FROM base AS prod
 ENV NODE_ENV=production
-RUN yarn install
+RUN npm install
 COPY . .
-RUN yarn build
+RUN npm run build
 
-CMD [ "yarn", "start" ]
-CMD [ "npm", "run", "start:prod" ]
+CMD [ "npm", "run", "start" ]
