@@ -9,4 +9,5 @@ export interface IPost {
   address: string;
   username: string;
   coordinates: { lat: number; lng: number };
+  id: number;
 }

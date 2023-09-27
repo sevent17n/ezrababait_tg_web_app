@@ -2,38 +2,45 @@
 
 import { useQuery } from '@tanstack/react-query';
 import { GroupService } from '@/shared/api/services/group.service';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import GroupCard from '@/entities/group_card/GroupCard';
+import { ICard } from '@/entities/card/Card';
+import CardsLayout from '@/widgets/cards_layout/CardsLayout';
 
 const GroupList = () => {
   const [page, setPage] = useState(1);
-  const { data, isLoading } = useQuery(
+  const { data: groups, isLoading } = useQuery(
     ['getGroupList'],
     async () => await GroupService.getGroupList(page, 15)
   );
-  console.log(data);
+  const [cards, setCards] = useState<Array<ICard>>();
+  useEffect(() => {
+    !isLoading &&
+      groups &&
+      setCards(
+        groups.map((group) => ({
+          id: group._id,
+          title: `${group.name}`,
+          image_url: group.image_url,
+          subtitle: group.admin
+            ? `${group?.admin?.first_name} ${group?.admin?.last_name}`
+            : undefined,
+          link: `/manage_groups/${group._id}`,
+          selectable: true,
+        }))
+      );
+  }, [groups, isLoading]);
   return (
     <div
       style={{
         display: 'flex',
         flexWrap: 'wrap',
-        maxWidth: 400,
-        gap: 20,
+        maxWidth: 460,
+        gap: 35,
         padding: '0 20px',
       }}
     >
-      {!isLoading &&
-        data &&
-        data.map((group) => (
-          <GroupCard
-            key={group._id}
-            admin={group.admin}
-            name={group.name}
-            members={group.members}
-            _id={group._id}
-            image_url={group.image_url}
-          />
-        ))}
+      {!isLoading && cards && <CardsLayout cards={cards} />}
     </div>
   );
 };

@@ -9,7 +9,6 @@ export const login = createAsyncThunk<IAuthResponse, TelegramUser>(
   'auth/login',
   async (data, thunkAPI) => {
     try {
-      console.log(data);
       const response = await AuthService.login(data);
       return response.data;
     } catch (e) {

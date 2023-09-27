@@ -8,4 +8,10 @@ export const AdminService = {
       `${API_URL}/posts/posts?query=${query}`
     );
   },
+  async getUserById(id: number) {
+    const { data } = await AxiosAuth.get<IUserState>(
+      `${API_URL}/posts/posts_by_id?id=${id}`
+    );
+    return data;
+  },
 };

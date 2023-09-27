@@ -9,12 +9,14 @@ import {
   DialogTitle,
   TextField,
 } from '@mui/material';
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { GroupService } from '@/shared/api/services/group.service';
 import UploadField from '@/entities/upload_field/UploadField';
+import { ChatService } from '@/shared/api/services/chat.service';
+import { useAuth } from '@/shared/lib/hooks/useAuth';
 
-const CreateGroup = () => {
+const CreateGroup: FC<{ idArray: Array<number> }> = ({ idArray }) => {
   const [isOpen, setIsOpen] = useState(false);
   const {
     register,
@@ -24,21 +26,21 @@ const CreateGroup = () => {
   } = useForm<{ name: string; group_image_url: string }>({
     mode: 'onChange',
   });
-
+  const { user } = useAuth();
   const onSubmit = async (data: { name: string; group_image_url: string }) => {
-    await GroupService.createGroup(data.name, data.group_image_url);
+    if (user) {
+      const group = await GroupService.createGroup(
+        data.name,
+        data.group_image_url,
+        idArray
+      );
+      await ChatService.createChat(idArray, user.id, group._id);
+    }
     setIsOpen(false);
   };
   return (
     <div>
-      {!isOpen && (
-        <Button
-          onClick={() => setIsOpen(true)}
-          style={{ position: 'fixed', right: 20, bottom: 20 }}
-        >
-          Create group
-        </Button>
-      )}
+      {!isOpen && <Button onClick={() => setIsOpen(true)}>Create group</Button>}
       <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
         <form
           onSubmit={handleSubmit(onSubmit)}

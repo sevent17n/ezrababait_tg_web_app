@@ -24,8 +24,7 @@ const GroupCard: FC<IGroup> = ({ admin, name, _id, image_url }) => {
           </div>
           {admin && (
             <div style={{ width: 150 }}>
-              <h4>Admin`s name:</h4>
-              <p>{admin.first_name}</p>
+              <h4>Admin: {admin.first_name}</h4>
             </div>
           )}
         </div>

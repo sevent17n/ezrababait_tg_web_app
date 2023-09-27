@@ -3,11 +3,20 @@ import { API_URL } from '@/shared/config/api.config';
 import { IGroup } from '@/shared/interfaces/group.interface';
 
 export const GroupService = {
-  async createGroup(name: string, group_image_url: string) {
-    return await AxiosAuth.post<IGroup>(
-      `${API_URL}/group/create_group?name=${name}&image_url=${group_image_url}`,
-      name
+  async createGroup(
+    name: string,
+    group_image_url: string,
+    idArray: Array<number>
+  ) {
+    const { data } = await AxiosAuth.post<IGroup>(
+      `${API_URL}/group/create_group`,
+      {
+        name: name,
+        image_url: group_image_url,
+        idArray: idArray,
+      }
     );
+    return data;
   },
   async getGroupList(page: number, perPage: number) {
     const { data } = await AxiosAuth.get<Array<IGroup>>(

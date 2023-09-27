@@ -4,7 +4,6 @@ import GroupList from '@/widgets/group_list/GroupList';
 const ManageGroups = () => {
   return (
     <div>
-      <CreateGroup />
       <GroupList />
     </div>
   );

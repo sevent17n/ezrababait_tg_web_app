@@ -2,13 +2,15 @@
 import TelegramLoginButton, {
   TelegramUser,
 } from '@v9v/ts-react-telegram-login';
-import axios from 'axios';
+
 import { useActions } from '@/shared/lib/hooks/useActions';
-import { useCallback } from 'react';
+import { useRouter } from 'next/navigation';
 const AuthPage = () => {
   const { login } = useActions();
+  const router = useRouter();
   const handleTelegramResponse = async (user: TelegramUser) => {
     login(user);
+    router.push('/');
   };
   return (
     <main>

@@ -11,20 +11,23 @@ import { useQuery } from '@tanstack/react-query';
 import PendingPage from '@/app/pending_page/page';
 import AuthPage from '@/app/auth_page/page';
 import '../globals.css';
+import { ChatService } from '@/shared/api/services/chat.service';
+import { IUserState } from '@/store/user/user.interface';
 const AuthProvider: FC<TypeComponentAuthFields> = ({
   children,
   Component: { isOnlyUser, isOnlyAdmin, isOnlySuperAdmin },
 }) => {
   const { user, isLoading } = useAuth();
+  const pathname = usePathname();
+  const router = useRouter();
 
   const { logout, checkAuth } = useActions();
-  const pathname = usePathname();
 
   const { data } = useQuery(
     ['tgAuth'],
     async () => !isLoading && pathname && tgAuth(user, pathname)
   );
-  const router = useRouter();
+
   if (data) router.push('/');
   useEffect(() => {
     const accessToken = Cookies.get('accessToken');
@@ -33,17 +36,22 @@ const AuthProvider: FC<TypeComponentAuthFields> = ({
 
   useEffect(() => {
     const refreshToken = Cookies.get('refreshToken');
-    if (!refreshToken && user) logout();
-  }, [pathname]);
-  if (!isLoading) {
-    if (!user) {
-      pathname !== '/auth_page' && router.replace('/auth_page');
-      return <AuthPage />;
+    if (!refreshToken) {
+      logout();
+      router.replace('/auth_page');
     }
+  }, [pathname]);
+
+  if (!isLoading) {
     const isPending = user?.isAdmin === 'pending';
     const isHouseKeeper = user?.isAdmin === 'housekeeper';
     const isAdmin = user?.isAdmin === 'admin';
     const isSuperAdmin = user?.isAdmin === 'super_admin';
+    if (user) {
+      pathname === '/auth_page' && router.replace('/');
+      return <>{children}</>;
+    }
+
     if (isSuperAdmin) return <>{children}</>;
 
     if (isOnlySuperAdmin) {
@@ -65,8 +73,10 @@ const AuthProvider: FC<TypeComponentAuthFields> = ({
 
     if (isPending) {
       pathname !== '/pending_page' && router.replace('/pending_page');
-      return <PendingPage />;
+      return null;
     }
+
+    return <>{children}</>;
   }
 };
 

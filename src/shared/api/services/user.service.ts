@@ -4,6 +4,7 @@ import { IPost } from '@/shared/interfaces/post.interface';
 
 export const UserService = {
   async getUserList() {
-    return await axios.get<Array<IPost>>(`${API_URL}/bot`);
+    const { data } = await axios.get<Array<IPost>>(`${API_URL}/bot`);
+    return data;
   },
 };
