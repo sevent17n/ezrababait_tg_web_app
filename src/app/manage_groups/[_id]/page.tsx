@@ -1,6 +1,6 @@
 'use client';
 
-import GroupPage from '@/pages/GroupPage/GroupPage';
+import GroupPage from '@/screens/GroupPage/GroupPage';
 
 const Page = () => {
   return <GroupPage />;

@@ -1,4 +1,4 @@
-import ManageGroups from '@/pages/ManageGroups/ManageGroups';
+import ManageGroups from '@/screens/ManageGroups/ManageGroups';
 
 const Page = () => {
   return (
