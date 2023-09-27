@@ -27,9 +27,9 @@ const UserRow: FC<{ posts: Array<IPost> }> = ({ posts }) => {
   return (
     <div style={{ marginTop: 30 }}>
       <StyledUserRow>
-        {posts.map((post) => (
-          <UserCard key={Math.random()} post={post} />
-        ))}
+        {/*{posts.map((post) => (*/}
+        {/*  <UserCard key={Math.random()} user={post} />*/}
+        {/*))}*/}
       </StyledUserRow>
     </div>
   );
