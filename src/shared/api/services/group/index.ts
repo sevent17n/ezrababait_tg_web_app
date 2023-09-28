@@ -1,0 +1,1 @@
+export { groupService } from "./model";

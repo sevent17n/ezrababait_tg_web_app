@@ -1,13 +1,13 @@
-import { IUserState } from '@/store/user/user.interface';
-import AvatarContainer from '@/shared/ui/AvatarContainer/AvatarContainer';
-import { Dispatch, FC, SetStateAction } from 'react';
-import UserCard from '@/entities/user_card/UserCard';
-import { Button, Dialog } from '@mui/material';
-import { AiOutlineClose } from 'react-icons/ai';
+import { Button, Dialog } from "@mui/material";
+import { AiOutlineClose } from "react-icons/ai";
+import { IUser } from "@/src/app/store/user/user.interface";
+import { Dispatch, FC, SetStateAction } from "react";
+import { AvatarContainer } from "@/src/shared/components/avatar-container";
+import UserCard from "@/src/entities/user_card/UserCard";
 
 export interface IChatMenu {
-  admins: IUserState[];
-  members: IUserState[];
+  admins: IUser[];
+  members: IUser[];
   image_url: string;
   name: string;
   open: boolean;
@@ -19,7 +19,7 @@ const ChatMenu: FC<IChatMenu> = ({
   admins,
   members,
   open,
-  setOpen,
+  setOpen
 }) => {
   return (
     <Dialog open={open} onClose={() => setOpen(false)}>

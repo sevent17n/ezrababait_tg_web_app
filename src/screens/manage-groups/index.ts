@@ -1,0 +1,1 @@
+export { ManageGroups } from "./view";

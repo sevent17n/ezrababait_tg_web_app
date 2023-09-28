@@ -1,0 +1,1 @@
+export { PalleteTheme } from './view';

@@ -1,9 +1,9 @@
-import { IUserState } from '@/store/user/user.interface';
+import { IUser } from "@/src/app/store/user/user.interface";
 
 export interface IGroup {
   _id: string;
-  admin: IUserState | null;
+  admin: IUser | null;
   name: string;
-  members: Array<IUserState>;
+  members: Array<IUser>;
   image_url: string;
 }

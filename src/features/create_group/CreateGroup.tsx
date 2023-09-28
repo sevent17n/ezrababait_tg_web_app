@@ -1,5 +1,6 @@
-'use client';
+"use client";
 
+import { useAuth } from "@/src/shared/hooks/use-auth";
 import {
   Button,
   Dialog,
@@ -7,14 +8,13 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  TextField,
-} from '@mui/material';
-import React, { FC, useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
-import { GroupService } from '@/shared/api/services/group.service';
-import UploadField from '@/entities/upload_field/UploadField';
-import { ChatService } from '@/shared/api/services/chat.service';
-import { useAuth } from '@/shared/lib/hooks/useAuth';
+  TextField
+} from "@mui/material";
+import { FC, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { groupService } from "@/src/shared/api/services/group";
+import { chatService } from "@/src/shared/api/services/chat";
+import UploadField from "@/src/entities/upload_field/UploadField";
 
 const CreateGroup: FC<{ idArray: Array<number> }> = ({ idArray }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,19 +22,19 @@ const CreateGroup: FC<{ idArray: Array<number> }> = ({ idArray }) => {
     register,
     handleSubmit,
     formState: { errors },
-    control,
+    control
   } = useForm<{ name: string; group_image_url: string }>({
-    mode: 'onChange',
+    mode: "onChange"
   });
   const { user } = useAuth();
   const onSubmit = async (data: { name: string; group_image_url: string }) => {
     if (user) {
-      const group = await GroupService.createGroup(
+      const group = await groupService.createGroup(
         data.name,
         data.group_image_url,
         idArray
       );
-      await ChatService.createChat(idArray, user.id, group._id);
+      await chatService.createChat(idArray, user.id, group._id);
     }
     setIsOpen(false);
   };
@@ -44,7 +44,7 @@ const CreateGroup: FC<{ idArray: Array<number> }> = ({ idArray }) => {
       <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          style={{ position: 'relative' }}
+          style={{ position: "relative" }}
         >
           <DialogTitle>Create new Group</DialogTitle>
           <DialogContent>
@@ -54,18 +54,18 @@ const CreateGroup: FC<{ idArray: Array<number> }> = ({ idArray }) => {
 
             <Controller
               control={control}
-              name={'group_image_url'}
-              defaultValue={''}
+              name={"group_image_url"}
+              defaultValue={""}
               render={({
                 field: { value, onChange },
-                fieldState: { error },
+                fieldState: { error }
               }) => (
                 <UploadField
                   onChange={onChange}
-                  placeholder={'Group Picture'}
+                  placeholder={"Group Picture"}
                   error={error}
                   value={value}
-                  folder={'groups'}
+                  folder={"groups"}
                 />
               )}
             />
@@ -76,12 +76,12 @@ const CreateGroup: FC<{ idArray: Array<number> }> = ({ idArray }) => {
               label="@username"
               type="text"
               variant="standard"
-              {...register('name')}
+              {...register("name")}
             />
           </DialogContent>
           <DialogActions>
             <Button onClick={() => setIsOpen(false)}>Cancel</Button>
-            <Button type={'submit'}>Create</Button>
+            <Button type={"submit"}>Create</Button>
           </DialogActions>
         </form>
       </Dialog>

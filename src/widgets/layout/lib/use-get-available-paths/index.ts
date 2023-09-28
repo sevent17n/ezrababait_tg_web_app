@@ -1,0 +1,1 @@
+export { useGetAvailablePaths } from "./model";

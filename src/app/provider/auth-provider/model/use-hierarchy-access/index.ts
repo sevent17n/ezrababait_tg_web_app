@@ -1,0 +1,1 @@
+export { useHierarchyAccess } from "./hook";

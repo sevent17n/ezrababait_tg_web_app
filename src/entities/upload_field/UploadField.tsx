@@ -1,9 +1,8 @@
-import cn from 'clsx';
-import Image from 'next/image';
-import React, { CSSProperties, FC } from 'react';
-import styles from './UploadField.module.scss';
-import { useUpload } from '@/shared/lib/hooks/useUpload';
-import { FieldError } from 'react-hook-form';
+import cn from "clsx";
+import Image from "next/image";
+import React, { CSSProperties, FC } from "react";
+import { FieldError } from "react-hook-form";
+import { useUpload } from "@/src/shared/hooks/use-upload";
 
 export interface IUploadField {
   folder?: string;
@@ -22,33 +21,33 @@ const UploadField: FC<IUploadField> = ({
   placeholder,
   isNoImage = false,
   style,
-  value,
+  value
 }) => {
   const { isLoading, uploadImage } = useUpload(onChange, folder);
   return (
-    <div className={cn(styles.field, styles.uploadField)} style={style}>
-      <p className={styles.label}>{placeholder}</p>
-      <div className={styles.uploadFlex}>
-        <div className={styles.inputContainer}>
+    <div style={style}>
+      <p>{placeholder}</p>
+      <div>
+        <div>
           <div>
             <p>Select an image</p>
           </div>
           <label>
             <input
-              type={'file'}
+              type={"file"}
               onChange={uploadImage}
               accept="image/png, image/svg,image/gif, image/jpeg,image/webp,"
             />
-            {error && <div className={styles.error}>{error.message}</div>}
+            {error && <div>{error.message}</div>}
           </label>
         </div>
         {!isNoImage && (
-          <div className={styles.uploadImageContainer}>
+          <div>
             {isLoading ? (
               <p>loading</p>
             ) : (
               value && (
-                <Image alt={' '} src={value} layout={'fill'} unoptimized />
+                <Image alt={" "} src={value} layout={"fill"} unoptimized />
               )
             )}
           </div>

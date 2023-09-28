@@ -1,4 +1,4 @@
-import { IUserState } from '@/store/user/user.interface';
+import { IUser } from "@/src/app/store/user/user.interface";
 
 export interface IContent {
   image?: null | string;
@@ -10,7 +10,7 @@ export interface IMessage {
   _id: string;
   content: IContent;
   date: Date;
-  sender: IUserState;
+  sender: IUser;
   chatId: string;
   isOwnMessage: boolean;
   read: boolean;
@@ -28,7 +28,7 @@ export interface IChatBody {
 export interface IChat {
   image_url: string;
   name: string;
-  members: Array<IUserState>;
+  members: Array<IUser>;
   group_id: string;
   messages: Array<IMessage>;
   _id: string;

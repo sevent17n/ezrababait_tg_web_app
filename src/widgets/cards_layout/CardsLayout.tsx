@@ -1,5 +1,7 @@
-import Card, { ICard } from '@/entities/card/Card';
-import { Dispatch, FC, SetStateAction, useState } from 'react';
+import { Dispatch, FC, SetStateAction, useState } from "react";
+import { Card } from "@/src/entities/card";
+import { ICard } from "@/src/entities/card/view";
+import { StyledCardsLayout } from "@/src/widgets/cards_layout/styles";
 
 interface ICardsLayout {
   cards: Array<ICard>;
@@ -7,7 +9,7 @@ interface ICardsLayout {
 }
 const CardsLayout: FC<ICardsLayout> = ({ cards, onClick }) => {
   return (
-    <div className={'flex flex-wrap'} style={{ width: 600 }}>
+    <StyledCardsLayout>
       {cards.map((card, index) => (
         <Card
           id={card.id}
@@ -20,7 +22,7 @@ const CardsLayout: FC<ICardsLayout> = ({ cards, onClick }) => {
           subtitle={card.subtitle}
         />
       ))}
-    </div>
+    </StyledCardsLayout>
   );
 };
 

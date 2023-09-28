@@ -1,5 +1,5 @@
-'use client';
-import React, { useState } from 'react';
+"use client";
+import React, { useState } from "react";
 import {
   Button,
   Dialog,
@@ -7,11 +7,11 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  TextField,
-} from '@mui/material';
-import Select from 'react-select';
-import { useForm } from 'react-hook-form';
-import { SuperAdminService } from '@/shared/api/services/super_admin.service';
+  TextField
+} from "@mui/material";
+import Select from "react-select";
+import { useForm } from "react-hook-form";
+import { superAdminService } from "@/src/shared/api/services/super-admin";
 
 const AddAdmin = () => {
   const [open, setOpen] = useState(false);
@@ -27,7 +27,7 @@ const AddAdmin = () => {
   const { register, handleSubmit, setValue } = useForm<IAddAdmin>();
 
   const onSubmit = async (data: IAddAdmin) => {
-    await SuperAdminService.addAdmin(data);
+    await superAdminService.addAdmin(data);
     handleClose();
   };
 
@@ -35,7 +35,7 @@ const AddAdmin = () => {
     <>
       <Button
         onClick={handleClickOpen}
-        style={{ position: 'fixed', right: 20, bottom: 20 }}
+        style={{ position: "fixed", right: 20, bottom: 20 }}
       >
         Add Admin
       </Button>
@@ -46,7 +46,7 @@ const AddAdmin = () => {
             <DialogContentText>
               Enter new admin username and set up role
             </DialogContentText>
-            <div className={'flex'}>
+            <div className={"flex"}>
               <TextField
                 autoFocus
                 margin="dense"
@@ -54,23 +54,23 @@ const AddAdmin = () => {
                 label="@username"
                 type="text"
                 variant="standard"
-                {...register('username')}
+                {...register("username")}
               />
               <Select
                 options={[
-                  { value: 'super_admin', label: 'Super Admin' },
-                  { value: 'admin', label: 'Admin' },
-                  { value: 'housekeeper', label: 'Housekeeper' },
+                  { value: "super_admin", label: "Super Admin" },
+                  { value: "admin", label: "Admin" },
+                  { value: "housekeeper", label: "Housekeeper" }
                 ]}
                 onChange={(selectedOption) => {
-                  selectedOption && setValue('role', selectedOption.value);
+                  selectedOption && setValue("role", selectedOption.value);
                 }}
               />
             </div>
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose}>Cancel</Button>
-            <Button type={'submit'}>Add</Button>
+            <Button type={"submit"}>Add</Button>
           </DialogActions>
         </form>
       </Dialog>

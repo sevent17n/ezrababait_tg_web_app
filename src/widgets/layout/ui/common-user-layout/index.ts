@@ -1,0 +1,1 @@
+export { CommonUserLayout } from "./view";

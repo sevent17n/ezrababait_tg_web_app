@@ -1,18 +1,26 @@
-import { FC } from 'react';
-import { IMessage } from '@/shared/interfaces/chat.interface';
-import AvatarContainer from '@/shared/ui/AvatarContainer/AvatarContainer';
+import { FC } from "react";
+import { AvatarContainer } from "@/src/shared/components/avatar-container";
+import { IMessage } from "@/src/shared/interfaces/chat.interface";
+import { Stack, Typography } from "@mui/material";
 
 const Message: FC<IMessage> = ({ content, date, sender, isOwnMessage }) => {
   return (
-    <div>
+    <Stack
+      direction={"row"}
+      sx={{
+        alignSelf: isOwnMessage ? "flex-end" : "flex-start",
+        maxWidth: 300,
+        margin: "10px 0"
+      }}
+    >
       <div>
-        <div>{content.text}</div>
+        <Typography>{content.text}</Typography>
         <div>
-          <p>{date.toString()}</p>
+          <Typography>{date.toString()}</Typography>
         </div>
       </div>
       <AvatarContainer image_url={sender.photo_url} alt={sender.first_name} />
-    </div>
+    </Stack>
   );
 };
 

@@ -1,17 +1,16 @@
-'use client';
+"use client";
 
-import { useQuery } from '@tanstack/react-query';
-import { GroupService } from '@/shared/api/services/group.service';
-import { useEffect, useState } from 'react';
-import GroupCard from '@/entities/group_card/GroupCard';
-import { ICard } from '@/entities/card/Card';
-import CardsLayout from '@/widgets/cards_layout/CardsLayout';
+import { useQuery } from "@tanstack/react-query";
+import { groupService } from "@/src/shared/api/services/group";
+import { useEffect, useState } from "react";
+import { ICard } from "@/src/entities/card/Card";
+import CardsLayout from "@/src/widgets/cards_layout/CardsLayout";
 
 const GroupList = () => {
   const [page, setPage] = useState(1);
   const { data: groups, isLoading } = useQuery(
-    ['getGroupList'],
-    async () => await GroupService.getGroupList(page, 15)
+    ["getGroupList"],
+    async () => await groupService.getGroupList(page, 15)
   );
   const [cards, setCards] = useState<Array<ICard>>();
   useEffect(() => {
@@ -26,18 +25,18 @@ const GroupList = () => {
             ? `${group?.admin?.first_name} ${group?.admin?.last_name}`
             : undefined,
           link: `/manage_groups/${group._id}`,
-          selectable: true,
+          selectable: true
         }))
       );
   }, [groups, isLoading]);
   return (
     <div
       style={{
-        display: 'flex',
-        flexWrap: 'wrap',
+        display: "flex",
+        flexWrap: "wrap",
         maxWidth: 460,
         gap: 35,
-        padding: '0 20px',
+        padding: "0 20px"
       }}
     >
       {!isLoading && cards && <CardsLayout cards={cards} />}
