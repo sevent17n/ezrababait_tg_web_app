@@ -5,7 +5,10 @@ COPY . .
 WORKDIR ./
 
 ENV NODE_ENV=production
+
 RUN npm install
+
+RUN npm install -g next
 
 RUN npm run build
 
