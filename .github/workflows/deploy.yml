@@ -16,7 +16,7 @@ jobs:
           script: |
             sudo rm -rf tg_web_app
             sudo gh repo clone Monitozation/tg_web_app
-            sudo cd tg_web_app
+            cd tg_web_app
             sudo docker stop ${{ secrets.DOCKER_REPO_NAME }} || true
             sudo docker rm ${{ secrets.DOCKER_REPO_NAME }} || true
             touch .env
