@@ -2,7 +2,6 @@
 
 import { useQuery } from "@tanstack/react-query";
 
-import Image from "next/image";
 import { superAdminService } from "@/src/shared/api/services/super-admin";
 import AddAdmin from "@/src/features/add_admin/AddAdmin";
 import CardsLayout from "@/src/widgets/cards_layout/CardsLayout";
