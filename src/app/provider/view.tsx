@@ -17,10 +17,7 @@ export const Provider: FC<{ children: ReactNode }> = ({ children }) => {
         <PalleteTheme>
           <QueryProvider>
             <StoreProvider>
-              <Wrapper>
-                <Layout />
-                <AuthProvider>{children}</AuthProvider>
-              </Wrapper>
+              <AuthProvider>{children}</AuthProvider>
             </StoreProvider>
           </QueryProvider>
         </PalleteTheme>

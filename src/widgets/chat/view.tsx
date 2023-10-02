@@ -42,7 +42,7 @@ export const Chat: FC<IChat> = ({
       $socket.off("new_message", handleNewMessage);
     };
   }, []);
-
+  console.log(members);
   return (
     <StyledChatContainer>
       <ChatHeader

@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { ReactNode } from "react";
 import { Provider } from "@/src/app/provider";
 import NextTopLoader from "nextjs-toploader";
-import { Wrapper } from "@/src/shared/containers/root-wrapper";
 import { getFonts } from "@/src/app/fonts";
 import { Layout } from "@/src/widgets/layout";
+import { Wrapper } from "@/src/shared/containers/root-wrapper";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +16,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en">
       <body className={getFonts()}>
         <NextTopLoader color={"#7C69F4"} />
-        <Provider>{children}</Provider>
+        <Provider>
+          <Wrapper>{children}</Wrapper>
+          <Layout />
+        </Provider>
       </body>
     </html>
   );

@@ -1,23 +1,25 @@
-import { FC } from 'react';
-import Image from 'next/image';
-import { IPost } from '@/shared/interfaces/post.interface';
-import Link from 'next/link';
-import { IUserState } from '@/store/user/user.interface';
+import { FC } from "react";
+import Image from "next/image";
+import { IUser } from "@/src/app/store/user/user.interface";
+import Link from "next/link";
 
 const UserCard: FC<{
-  user: IUserState;
+  user: IUser;
 }> = ({ user }) => {
   return (
     <Link href={`/user/${user.id}`}>
       <div
-        className={'w-24 h-36 flex flex-col'}
+        className={"w-24 h-36 flex flex-col"}
         style={{
-          display: 'flex',
-          flexDirection: 'column',
+          display: "flex",
+          flexDirection: "column"
         }}
       >
         <Image
-          src={user.photo_url}
+          src={
+            //@ts-ignore
+            user.photo_url
+          }
           alt={user.first_name}
           width={100}
           height={100}

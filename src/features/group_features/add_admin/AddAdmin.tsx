@@ -41,7 +41,7 @@ const AddAdmin: FC<{ group_id: string }> = ({ group_id }) => {
           <DialogTitle>Add new Admin</DialogTitle>
           <DialogContent>
             <div className={"flex"}>
-              <Search setUser={setUser} />
+              <Search setUser={setUser} type={"user"} />
 
               {user && (
                 <p>Selected User: {user.first_name + " " + user.last_name}</p>

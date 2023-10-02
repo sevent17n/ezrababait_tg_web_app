@@ -116,7 +116,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
       light: "rgba(253, 242, 242, 1)"
     },
     purple: {
-      main: "#7C69F4"
+      main: "#A0627B"
     },
     ...(mode === "light" && {
       toggleButton: {
@@ -169,7 +169,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
     ...(mode === "light" && {
       text: {
         primary: "#0E0E0E",
-        secondary: "#7C69F4"
+        secondary: "#A0627B"
       }
     }),
     ...(mode === "dark" && {
@@ -183,7 +183,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
     MuiButton: {
       styleOverrides: {
         root: {
-          background: "#7C69F4",
+          background: "#A0627B",
           padding: "0.875rem 1.5rem",
           borderRadius: "10px",
           fontSize: "1rem",
@@ -196,7 +196,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
           gap: "0.5rem",
 
           "&:hover": {
-            background: "#7C69F4"
+            background: "#FFE3EF"
           },
 
           "&.Mui-disabled": {

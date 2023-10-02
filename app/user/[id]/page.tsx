@@ -17,6 +17,7 @@ const Page = () => {
     user && (
       <div>
         <Image
+          //@ts-ignore
           src={user.photo_url}
           alt={user.first_name}
           width={150}

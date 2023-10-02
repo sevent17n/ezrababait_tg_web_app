@@ -1,5 +1,5 @@
 import { FC } from "react";
-import Message from "@/src/entities/message/Message";
+import { Message } from "@/src/entities/message/";
 import { useAuth } from "@/src/shared/hooks/use-auth";
 import { IChatBody } from "@/src/shared/interfaces/chat.interface";
 import { StyledChatBody } from "@/src/widgets/chat/lib/chat-body/styles";

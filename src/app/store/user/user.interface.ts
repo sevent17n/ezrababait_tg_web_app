@@ -2,7 +2,7 @@ export interface IUser {
   chats: Array<{}>;
   first_name: string;
   last_name: string;
-  photo_url: string;
+  image_url: string;
   username: string;
   posts: Array<{}>;
   id: number;

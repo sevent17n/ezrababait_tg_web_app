@@ -20,7 +20,7 @@ const AddUser: FC<{ group_id: string }> = ({ group_id }) => {
       <Button onClick={() => setOpen(true)}>Add member</Button>
       <Dialog open={open} onClose={() => setOpen(false)}>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Search setUser={setUser} />
+          <Search setUser={setUser} type={"user"} />
 
           {user && (
             <p>Selected User: {user.first_name + " " + user.last_name}</p>

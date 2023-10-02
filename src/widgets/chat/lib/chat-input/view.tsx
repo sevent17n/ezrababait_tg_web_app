@@ -3,6 +3,10 @@ import { useForm } from "react-hook-form";
 import { FC } from "react";
 import { IContent } from "@/src/shared/interfaces/chat.interface";
 import { chatService } from "@/src/shared/api/services/chat";
+import {
+  StyledChatInput,
+  StyledTextField
+} from "@/src/widgets/chat/lib/chat-input/styles";
 
 export const ChatInput: FC<{ senderId: number; chatId: string }> = ({
   senderId,
@@ -22,9 +26,13 @@ export const ChatInput: FC<{ senderId: number; chatId: string }> = ({
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <TextField type="text" {...register("text")} />
+    <StyledChatInput onSubmit={handleSubmit(onSubmit)}>
+      <StyledTextField
+        type="text"
+        {...register("text")}
+        placeholder={"Enter a message"}
+      />
       <Button type={"submit"}>Send</Button>
-    </form>
+    </StyledChatInput>
   );
 };

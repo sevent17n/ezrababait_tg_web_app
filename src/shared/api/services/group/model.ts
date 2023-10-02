@@ -45,6 +45,16 @@ class GroupService {
       groupId
     });
   }
+  async findByName(name: string) {
+    const { data } = await this.axios.get<IGroup[]>(
+      `/group/find_group_by_name`,
+      {
+        params: { name }
+      }
+    );
+
+    return data;
+  }
 }
 
 export const groupService = new GroupService();

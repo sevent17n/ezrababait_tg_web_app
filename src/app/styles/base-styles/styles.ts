@@ -17,7 +17,8 @@ export const baseStyles = css`
   }
 
   body {
-    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
     font-family: var(--red-hat-text-font);
     font-size: var(--body-font-size);
     line-height: var(--body-line-height);

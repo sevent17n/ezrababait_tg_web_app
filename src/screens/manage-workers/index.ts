@@ -1,0 +1,1 @@
+export { ManageWorkers } from "./view";

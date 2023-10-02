@@ -1,7 +1,6 @@
-import { FC, useCallback, useState } from 'react';
-import { IPost } from '@/shared/interfaces/post.interface';
-import UserCard from '@/entities/user_card/UserCard';
-import styled from '@emotion/styled';
+import { FC, useCallback, useState } from "react";
+import styled from "@emotion/styled";
+import { IPost } from "@/src/shared/interfaces/post.interface";
 
 const StyledUserRow = styled.div`
   display: flex;
@@ -12,7 +11,7 @@ const StyledUserRow = styled.div`
 const UserRow: FC<{ posts: Array<IPost> }> = ({ posts }) => {
   const [info, setInfo] = useState<Omit<
     IPost,
-    'first_name' | 'last_name'
+    "first_name" | "last_name"
   > | null>();
   const onCardClick = useCallback(
     (payload: IPost) => {

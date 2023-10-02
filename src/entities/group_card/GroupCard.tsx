@@ -1,15 +1,15 @@
-import { FC } from 'react';
-import { IGroup } from '@/shared/interfaces/group.interface';
-import Link from 'next/link';
-import Image from 'next/image';
+import { FC } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { IGroup } from "@/src/shared/interfaces/group.interface";
 
 const GroupCard: FC<IGroup> = ({ admin, name, _id, image_url }) => {
   return (
     <div style={{ width: 100, marginTop: 30 }}>
       <Link
         href={`/manage_groups/${_id}`}
-        className={'mt-2'}
-        style={{ display: 'flex', flexDirection: 'column', gap: 10 }}
+        className={"mt-2"}
+        style={{ display: "flex", flexDirection: "column", gap: 10 }}
       >
         <Image
           src={image_url}

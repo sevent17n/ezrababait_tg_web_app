@@ -1,8 +1,12 @@
 import { Dispatch, FC, SetStateAction, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Box, Button, Typography } from "@mui/material";
-import { StyledCard } from "@/src/entities/card/styles";
+import { Box, Button, CardContent, Typography } from "@mui/material";
+import {
+  StyledCard,
+  StyledCardTitle,
+  StyledImageContainer
+} from "@/src/entities/card/styles";
 
 export interface ICard {
   id: number | string;
@@ -44,19 +48,29 @@ export const Card: FC<ICard> = ({
   return (
     <StyledCard>
       <Link href={link}>
-        <Image src={image_url} alt={title} width={80} height={80} />
+        <StyledImageContainer>
+          <Image src={image_url} alt={title} fill />
+        </StyledImageContainer>
       </Link>
+      <CardContent>
+        <StyledCardTitle>
+          <Typography variant={"h3"}>{title}</Typography>
+        </StyledCardTitle>
 
-      <Typography variant={"h3"} sx={{ width: 100 }}>
-        {title}
-      </Typography>
-
-      {subtitle && <Typography variant={"h4"}>{subtitle}</Typography>}
-      {onClick && (
-        <Button onClick={handleAddToGroup}>
-          {inGroup ? "Remove from group" : "Add to group"}
-        </Button>
-      )}
+        {subtitle && <Typography variant={"h4"}>{subtitle}</Typography>}
+        {onClick && (
+          <Button
+            onClick={handleAddToGroup}
+            sx={{
+              fontSize: 14,
+              height: 20,
+              width: 50
+            }}
+          >
+            {inGroup ? "Remove" : "Add"}
+          </Button>
+        )}
+      </CardContent>
     </StyledCard>
   );
 };
