@@ -3,7 +3,7 @@ import TelegramLoginButton, {
   TelegramUser
 } from "@v9v/ts-react-telegram-login";
 import { useRouter } from "next/navigation";
-import { useActions } from "@/src/shared/hooks/use-actions";
+import { useActions } from "@/src/shared/hooks/use-actions/hook";
 const AuthPage = () => {
   const { login } = useActions();
   const router = useRouter();

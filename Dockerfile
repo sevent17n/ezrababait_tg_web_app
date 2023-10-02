@@ -1,8 +1,8 @@
 FROM node:18
 
-WORKDIR /app
-
 COPY . .
+
+WORKDIR ./
 
 ENV NODE_ENV=production
 RUN npm install

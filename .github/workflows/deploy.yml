@@ -24,6 +24,9 @@ jobs:
             echo "NEXT_PUBLIC_UPLOADS_URL=${{ secrets.NEXT_PUBLIC_UPLOADS_URL }}" >> .env
             echo "NEXT_PUBLIC_SOCKET_URL=${{ secrets.NEXT_PUBLIC_SOCKET_URL }}" >> .env
             echo "NEXT_PUBLIC_BOT_LINK=${{ secrets.NEXT_PUBLIC_BOT_LINK }}" >> .env
-            sudo docker build -t ${{ secrets.DOCKER_REPO_NAME }} .
-            sudo docker run -d --name ${{ secrets.DOCKER_REPO_NAME }} -p 3000:3000
+            echo "NODE_ENV=production" >> .env
+            npm run build
+            npm run start
+          #sudo docker build -t ${{ secrets.DOCKER_REPO_NAME }} .
+          #sudo docker run -d --name ${{ secrets.DOCKER_REPO_NAME }} -p 3000:3000
       
